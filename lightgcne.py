@@ -87,7 +87,7 @@ def compute_evgin(data):
     arr[arr > 0] = 1 + arr[arr > 0]
     arr[arr < 0] = arr[arr < 0] - 1
     nt = torch.from_numpy(arr)
-    torch.save(nt,"eigenvectorval.pt")
+    torch.save(nt,"amazon5k.pt")
 
 def train_e(edge_weight):
     total_loss = total_examples = 0
@@ -174,7 +174,7 @@ def replace_with_weights(tensor, weight_dict):
 if __name__ == "__main__":
 
     compute_evgin(data)
-    weight = torch.load("eigenvectorval.pt")
+    weight = torch.load("amazon5k.pt")
 
     row, col = data.edge_index
     edge_weight1 = weight[row]
@@ -206,4 +206,5 @@ if __name__ == "__main__":
     #
     #     model.reset_parameters()
     #     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
     #     optimizer.zero_grad(set_to_none=True)
